@@ -1,0 +1,29 @@
+body {
+  background-image: url(background.png);
+  background-size: cover;
+  position: absolute;
+  background-position: center;
+  color: rgb(255, 255, 255);
+  }
+  ::placeholder {
+  color: rgb(2, 110, 78);
+  opacity: 1;
+}
+  button {
+    display: none;
+  }
+  input{
+    font-size: 2em;
+    font-family: monospace;
+  }
+  h1{color: rgb(255, 255, 255)}
+  main{
+    width:200%;
+    margin: 5em auto;
+    margin-left: 9em;
+    padding: 1em 1em 2em 1em;
+    border-radius: 50px;
+    border: 3px solid rgb(167, 39, 0);
+    background-color: rgba(0, 0, 0, .5);
+    text-align: center;
+}

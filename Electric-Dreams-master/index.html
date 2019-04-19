@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Electric Dreams</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main>
+    <background-image: url(background.png)>
+    <h1>ELECTRIC DREAMS</h1>
+    <p id="computer" class="green">Hi. How how are you?</p>
+    <input id="human" type="text" placeholder="Type your response...">
+    <button>Enter</button>
+
+  </main>
+
+  <script type="text/javascript">
+    const computer = document.querySelector('#computer')
+    const human = document.getElementById('human')
+    const button = document.getElementsByTagName('button')[0]
+    const main = document.querySelector('main')
+    let computerMsg = ""
+    let humanMsg = ""
+
+    let questionTrack = "howAreYou"
+
+    button.addEventListener('click', clickHandler)
+
+    function clickHandler() {
+      computer.innerHTML = human.value
+    }
+    window.addEventListener("keydown", keydownHandler)
+
+    function keydownHandler(event) {
+      if (event.keyCode == 13 || event.keyCode == 10) {
+        //console.log("yes!!!");
+        //don't repeat yourself when you are coding
+        playGame();
+      }
+    }
+    let randomResponses = [
+      "Odontophobia is the fear of teeth.",
+      "Cats sleep 16 to 18 hours per day.",
+      "Karoke means (empty orchestra) in Japanese.",
+      "The most money ever paid for a cow in an auction was $1.3 million.",
+      "Feed me memes.",
+      "1 in 5,000 north Atlantic lobsters are born bright blue.",
+      "The king of hearts is the only king without a moustache.",
+      "Charlie Brown's father was a barber.",
+      "I'm done."
+    ]
+
+    function playGame() {
+      //analyze text
+      //do something for real
+      humanMsg = (human.value).toLowerCase()
+      if (questionTrack == "howAreYou") {
+        howAreYouEval()
+      } else if (questionTrack == "askYouSomething") {
+        askYouSomethingEval()
+      } else if (questionTrack == "likeCats") {
+        likeCatsEval()
+      } else if (questionTrack == "favColor") {
+        favColorEval()
+      } else if (questionTrack == "likeSnakes") {
+        likeSnakesEval()
+      }
+      //add all the functions as a else if
+      else {
+        genericResponse()
+      }
+      computer.innerHTML = computerMsg
+      human.value = ""
+      console.log(questionTrack);
+    }
+
+    function howAreYouEval() {
+      if (humanMsg.indexOf("bad") !== -1) {
+        computerMsg = "Thats sad. Can I ask you something?"
+        questionTrack = "askYouSomething"
+      } else if (humanMsg.indexOf("good") !== -1) {
+        computerMsg = "Great. What is your favorite color?"
+        questionTrack = "favColor"
+      } else {
+        genericResponse()
+      }
+    }
+    //use || for or to add more words
+    function askYouSomethingEval() {
+      if (humanMsg.indexOf("yes") !== -1) {
+        computerMsg = "Do you like Cats?"
+        questionTrack = "likeCats"
+      } else  {
+        genericResponse()
+      }
+    }
+
+    function likeCatsEval() {
+      if (humanMsg.indexOf("yes") !== -1) {
+      location.assign("https://www.youtube.com/watch?v=CQ85sUNBK7w")
+      } else {
+        genericResponse()
+      }
+    }
+
+    function favColorEval() {
+      if (humanMsg.indexOf("green") !== -1) {
+        computerMsg = "Thats mine too. Do you like snakes?"
+        questionTrack = "likeSnakes"
+      }  else {
+        genericResponse()
+      }
+    }
+    function likeSnakesEval() {
+      if (humanMsg.indexOf("yes") !== -1) {
+      location.assign("https://www.youtube.com/watch?v=jETaGralXg4")
+      }  else {
+        genericResponse()
+      }
+    }
+
+    function genericResponse() {
+      if (randomResponses.length > 0) {
+        //show random answer
+        const ranNum = Math.floor(Math.random() * randomResponses.length)
+        computerMsg = randomResponses[ranNum]
+        console.log(computerMsg);
+        randomResponses.splice(ranNum, 1)
+      } else {
+        computerMsg = "I'm done."
+        human.className = "displayNone"
+        setTimeout(endGame, 1800)
+      }
+    }
+
+    function endGame() {
+      location.assign("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+    }
+  </script>
+</body>
+
+</html>
